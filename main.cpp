@@ -1124,7 +1124,7 @@ public:
 
 		else
 		{
-			cout << "\t\t\tAccount number not found" << endl;
+			cout << "\t\t\tNúmero da conta não encontrada" << endl;
 		}
 	}
 	void deleteaccount(string filename, int s)
@@ -1133,7 +1133,7 @@ public:
 		if (admin.login())
 		{
 			CheckingAccount::display();
-			cout << "\t\t\tEnter the account you want to delete: ";
+			cout << "\t\t\tDigite a conta que você deseja deletar: ";
 			cin >> deleteacc;
 			bool found = false;
 			int deleteIndex = -1;
@@ -1141,14 +1141,14 @@ public:
 			{
 				if (checkaccount[i]->getAccountNumber() == deleteacc)
 				{
-					cout << "Account Found! " << endl;
-					cout << setw(30) << "\t\t\tName: " << checkaccount[i]->getFirstName() << " " << checkaccount[i]->getLastName() << endl;
-					cout << setw(30) << "\t\t\tAccount Holder Name: " << customer[i]->getname() << endl;
-					cout << setw(30) << "\t\t\tAccount Number: " << checkaccount[i]->getAccountNumber() << endl;
-					cout << setw(30) << "\t\t\tBalance: $" << checkaccount[i]->getBalance() << endl;
-					cout << setw(30) << "\t\t\tCard type " << checkaccount[i]->getcardtype() << endl;
-					cout << setw(30) << "\t\t\tEmial: " << checkaccount[i]->getemail() << endl;
-					cout << setw(30) << "\t\t\tPhone Number: " << checkaccount[i]->getphone() << endl;
+					cout << "Conta Encontrada! " << endl;
+					cout << setw(30) << "\t\t\tNome: " << checkaccount[i]->getFirstName() << " " << checkaccount[i]->getLastName() << endl;
+					cout << setw(30) << "\t\t\tNome do Titular da Conta: " << customer[i]->getname() << endl;
+					cout << setw(30) << "\t\t\tNúmero da Conta: " << checkaccount[i]->getAccountNumber() << endl;
+					cout << setw(30) << "\t\t\tSaldo: R$" << checkaccount[i]->getBalance() << endl;
+					cout << setw(30) << "\t\t\tTipo de Cartão: " << checkaccount[i]->getcardtype() << endl;
+					cout << setw(30) << "\t\t\tEmail: " << checkaccount[i]->getemail() << endl;
+					cout << setw(30) << "\t\t\tNúmero de Telefone: " << checkaccount[i]->getphone() << endl;
 					found = true;
 					deleteIndex = i;
 					break;
@@ -1157,11 +1157,10 @@ public:
 			if (found)
 			{
 				char y;
-				cout << "\t\t\t\tEnter Y to delete this account... ";
+				cout << "\t\t\t\tDigite Y para deletar esta conta... ";
 				cin >> y;
-				if (y == 'Y' || y == 'y') {
-
-
+				if (y == 'Y' || y == 'y') 
+				{
 					delete customer[deleteIndex];
 					delete checkaccount[deleteIndex];
 					for (int i = deleteIndex; i < size - 1; i++)
@@ -1171,16 +1170,14 @@ public:
 					}
 					size--;
 					CheckingAccount::saveAccountData();
-					cout << "\t\t\t\tAccount deleted successfully... at " << getCurrentTime() << endl;
+					cout << "\t\t\t\tConta deletada com sucesso... em " << getCurrentTime() << endl;
 				}
 			}
-
 			else
 			{
-				cout << "\t\t\tAccount not found." << endl;
+				cout << "\t\t\tConta não encontrada." << endl;
 			}
 		}
-
 	}
 
 	void saveAccountData()
@@ -1189,7 +1186,6 @@ public:
 
 		if (!Out)
 		{
-		
 			return;
 		}
 		Customer* cust;
@@ -1212,23 +1208,24 @@ public:
 
 		Out.close();
 	}
+
 	void display() const
 	{
-		cout << "Account Type: Checking" << endl;
-		cout << setw(50) << "=====================================CUSTOMER FOR CHECKING ACCOUNT LIST================================" << endl;
+		cout << "Tipo de Conta: Conta Corrente" << endl;
+		cout << setw(50) << "=====================================LISTA DE CLIENTES DA CONTA CORRENTE================================" << endl;
 		cout << left << setw(15) << "A/C"
-			<< left << setw(18) << "Name"
-			<< left << setw(15) << "No. Account"
-			<< left << setw(20) << "Username"
-			<< left << setw(15) << "Card Type"
-			<< left << setw(30) << "Email Address"
-			<< left << setw(30) << "Phone No."
-			<< left << setw(5) << "Balance"
+			<< left << setw(18) << "Nome"
+			<< left << setw(15) << "Nº Conta"
+			<< left << setw(20) << "Usuário"
+			<< left << setw(15) << "Tipo de Cartão"
+			<< left << setw(30) << "Endereço de Email"
+			<< left << setw(30) << "Nº de Telefone"
+			<< left << setw(5) << "Saldo"
 			<< endl;
 
 		for (int i = 0; i < size; i++)
 		{
-			cout << left << setw(15) << "Checking"
+			cout << left << setw(15) << "Corrente"
 				<< left << setw(18) << checkaccount[i]->getFirstName() + " " + checkaccount[i]->getLastName()
 				<< left << setw(15) << checkaccount[i]->getAccountNumber()
 				<< left << setw(20) << customer[i]->getname()
@@ -1239,6 +1236,7 @@ public:
 				<< endl;
 		}
 	}
+
 	~CheckingAccount()
 	{
 		CheckingAccount::saveAccountData();
@@ -1389,7 +1387,7 @@ public:
 		Inp.open(filename);
 		if (!Inp)
 		{
-			cout << "\t\t\tFailed to open Student Loan data file." << endl;
+			cout << "\t\t\tFalha ao abrir o arquivo de dados do Empréstimo Estudantil." << endl;
 			return;
 		}
 		int index = 0;
@@ -1475,53 +1473,53 @@ public:
 	}
 	void addloan()
 	{
-		Out.open(studentLoanDataFile, ios::app); // Open the file
+		Out.open(studentLoanDataFile, ios::app); // Abre o arquivo
 		if (!Out)
 		{
-			cout << "\t\t\tFile is not open!" << endl;
+			cout << "\t\t\tO arquivo não está aberto!" << endl;
 			return;
 		}
 
-		cout << "\t\t\t\t\t\tSTUDENT LOAN ACCOUNT REGISTRATION" << endl;
+		cout << "\t\t\t\t\t\tREGISTRO DE CONTA DE EMPRÉSTIMO ESTUDANTIL" << endl;
 		string us, pass;
 		string enrollyear;
 		char c;
 		bool added;
 		do
 		{
-			cout << "\t\t\tEnter User new First name: ";
+			cout << "\t\t\tDigite o novo Primeiro Nome do Usuário: ";
 			string fname;
 			cin >> fname;
 
-			cout << "\t\t\tEnter User new Last name: ";
+			cout << "\t\t\tDigite o novo Sobrenome do Usuário: ";
 			string lname;
 			cin >> lname;
 
-			cout << "\t\t\tEnter User name: ";
+			cout << "\t\t\tDigite o Nome de Usuário: ";
 			cin >> us;
 
-			cout << "\t\t\tEnter Password: ";
+			cout << "\t\t\tDigite a Senha: ";
 			cin >> pass;
 
-			cout << "\t\t\tEnter enrollment year : ";
+			cout << "\t\t\tDigite o ano de matrícula: ";
 			cin >> enrollyear;
 
 			int loanNo;
-			cout << "\t\t\tEnter the Loan Number: ";
+			cout << "\t\t\tDigite o Número do Empréstimo: ";
 			cin >> loanNo;
 
 			double amount_L;
-			cout << "\t\t\tEnter the Amount: ";
+			cout << "\t\t\tDigite o Valor: ";
 			cin >> amount_L;
 
 			string email;
-			cout << "\t\t\tEnter the Email address: ";
+			cout << "\t\t\tDigite o Endereço de Email: ";
 			cin >> email;
 			double ratE;
-			cout << "\t\t\tEnter the Interest Rate: ";
+			cout << "\t\t\tDigite a Taxa de Juros: ";
 			cin >> ratE;
 			string phoneNumber;
-			cout << "\t\t\tEnter the Phone number: ";
+			cout << "\t\t\tDigite o Número de Telefone: ";
 			cin >> phoneNumber;
 			added = true;
 			if (added)
@@ -1534,7 +1532,7 @@ public:
 				studentLoans[size] = studloan;
 
 				size++;
-				// Write the data
+				// Escreve os dados
 				for (int i = size - 1; i < size; i++)
 				{
 					Customer* cust = customer[i];
@@ -1553,13 +1551,11 @@ public:
 				}
 
 				Out.close();
-				cout << "\t\t\tThe Account Registered Successfully at " << getCurrentTime() << endl;
+				cout << "\t\t\tA Conta foi Registrada com Sucesso em " << getCurrentTime() << endl;
 			}
-			cout << "\t\t\tDo You Want To Add Another Record? (Y/N): ";
+			cout << "\t\t\tDeseja Adicionar Outro Registro? (S/N): ";
 			cin >> c;
-		} while (c == 'Y' || c == 'y');
-
-
+		} while (c == 'S' || c == 's');
 	}
 
 	void updateaccount()
@@ -1567,7 +1563,7 @@ public:
 		int updateloan;
 		StudentFeeLoan::display();
 
-		cout << "\t\t\tEnter the account number update: ";
+		cout << "\t\t\tDigite o número da conta para atualizar: ";
 		cin >> updateloan;
 		bool updated = false;
 		string User, PASS, mail;
@@ -1582,15 +1578,15 @@ public:
 		{
 			if (studentLoans[i]->getloannumber() == updateloan)
 			{
-				cout << setw(30) << "\t\tAccount Found" << endl;
-				cout << setw(30) << "\t\tName: " << studentLoans[i]->getFirstName() << " " << studentLoans[i]->getLastName() << endl;
-				cout << setw(30) << "\t\tUsername: " << customer[i]->getname() << endl;
-				cout << setw(30) << "\t\tLoan Number: " << studentLoans[i]->getloannumber() << endl;
-				cout << setw(30) << "\t\tLoan Amount: $" << studentLoans[i]->getloanamount() << endl;
-				cout << setw(30) << "\t\tInterest Rate: " << studentLoans[i]->getinterestrate() << "%" << endl;
-				cout << setw(30) << "\t\tEnrollment Year: " << studentLoans[i]->getenrollmentYear() << endl;
-				cout << setw(30) << "\t\tEmail Address: " << studentLoans[i]->getemail() << endl;
-				cout << setw(30) << "\t\tPhone Number: " << studentLoans[i]->getphone() << endl;
+				cout << setw(30) << "\t\tConta Encontrada" << endl;
+				cout << setw(30) << "\t\tNome: " << studentLoans[i]->getFirstName() << " " << studentLoans[i]->getLastName() << endl;
+				cout << setw(30) << "\t\tNome de Usuário: " << customer[i]->getname() << endl;
+				cout << setw(30) << "\t\tNúmero do Empréstimo: " << studentLoans[i]->getloannumber() << endl;
+				cout << setw(30) << "\t\tValor do Empréstimo: R$" << studentLoans[i]->getloanamount() << endl;
+				cout << setw(30) << "\t\tTaxa de Juros: " << studentLoans[i]->getinterestrate() << "%" << endl;
+				cout << setw(30) << "\t\tAno de Matrícula: " << studentLoans[i]->getenrollmentYear() << endl;
+				cout << setw(30) << "\t\tEndereço de Email: " << studentLoans[i]->getemail() << endl;
+				cout << setw(30) << "\t\tNúmero de Telefone: " << studentLoans[i]->getphone() << endl;
 				found = true;
 				updateIndex = i;
 				break;
@@ -1598,60 +1594,58 @@ public:
 		}
 		if (found)
 		{
-			cout << "\t\t\tEnter first Name: ";
+			cout << "\t\t\tDigite o Primeiro Nome: ";
 			cin >> fname;
 			cin.ignore();
-			cout << "\t\t\tEnter Last Name: ";
+			cout << "\t\t\tDigite o Sobrenome: ";
 			cin >> lname;
 
-			cout << "\t\t\tEnter User new name: ";
+			cout << "\t\t\tDigite o novo Nome de Usuário: ";
 			cin >> User;
 
-			cout << "\t\t\tEnter new Password: ";
+			cout << "\t\t\tDigite a nova Senha: ";
 			cin >> PASS;
 
-			cout << "\t\t\tEnter new  Loan Number: ";
+			cout << "\t\t\tDigite o novo Número do Empréstimo: ";
 			cin >> loan_NO;
 
-			cout << "\t\t\tEnter the new Loan Amount: ";
+			cout << "\t\t\tDigite o novo Valor do Empréstimo: ";
 			cin >> amount;
 
-			cout << "\t\t\tEnter the new Interest Rate: ";
+			cout << "\t\t\tDigite a nova Taxa de Juros: ";
 			cin >> rate;
 
-			cout << "\t\t\tEnter the new Email: ";
+			cout << "\t\t\tDigite o novo Email: ";
 			cin >> mail;
 
-			cout << "\t\t\tEnter the new Phone Rate: ";
+			cout << "\t\t\tDigite o novo Número de Telefone: ";
 			cin >> phone_num;
-			cout << "\t\t\tEnter the year in which student enroll: ";
+			cout << "\t\t\tDigite o ano de matrícula: ";
 			cin >> Yearr;
 			updated = true;
 			if (updated)
 			{
-
-
 				customer[updateIndex] = new Customer(User, PASS);
 				studentLoans[updateIndex] = new StudentFeeLoan(fname, lname, loan_NO, amount, rate, Yearr, mail, phone_num);
 
-				cout << "\t\t\tAccount Edited successfully at " << getCurrentTime() << endl;
+				cout << "\t\t\tConta Editada com Sucesso em " << getCurrentTime() << endl;
 				StudentFeeLoan::saveLoanData();
 			}
 			else
 			{
-				cout << "\t\t\tError in adding account" << endl;
+				cout << "\t\t\tErro ao adicionar conta" << endl;
 			}
 		}
 		else
 		{
-			cout << "\t\t\tAccount Not found" << endl;
+			cout << "\t\t\tConta Não Encontrada" << endl;
 		}
 	}
 
 	void sreachaccount()
 	{
 		int serachaccount;
-		cout << "\t\t\tEnter the Loan Number to serach: ";
+		cout << "\t\t\tDigite o Número do Empréstimo para buscar: ";
 		cin >> serachaccount;
 		bool found1 = false;
 
@@ -1670,28 +1664,66 @@ public:
 		}
 		if (found1)
 		{
-			cout << left << setw(50) << "\t\tName: " << studentLoans[Index]->getFirstName() << " " << studentLoans[Index]->getLastName() << endl;
-			cout << left << setw(50) << "\t\tUsername: " << customer[Index]->getname() << endl;
-			cout << left << setw(50) << "\t\tLoan Number: " << studentLoans[Index]->getloannumber() << endl;
-			cout << left << setw(50) << "\t\tLoan Amount: $" << studentLoans[Index]->getloanamount() << endl;
-			cout << left << setw(50) << "\t\tInterest Rate: " << studentLoans[Index]->getinterestrate() << "%" << endl;
-			cout << left << setw(50) << "\t\tEnrollment Year: " << studentLoans[Index]->getenrollmentYear() << endl;
-			cout << left << setw(50) << "\t\tEmail Address: " << studentLoans[Index]->getemail() << endl;
-			cout << left << setw(50) << "\t\tPhone Number: " << studentLoans[Index]->getphone() << endl;
+			cout << left << setw(50) << "\t\tNome: " << studentLoans[Index]->getFirstName() << " " << studentLoans[Index]->getLastName() << endl;
+			cout << left << setw(50) << "\t\tNome de Usuário: " << customer[Index]->getname() << endl;
+			cout << left << setw(50) << "\t\tNúmero do Empréstimo: " << studentLoans[Index]->getloannumber() << endl;
+			cout << left << setw(50) << "\t\tValor do Empréstimo: R$" << studentLoans[Index]->getloanamount() << endl;
+			cout << left << setw(50) << "\t\tTaxa de Juros: " << studentLoans[Index]->getinterestrate() << "%" << endl;
+			cout << left << setw(50) << "\t\tAno de Matrícula: " << studentLoans[Index]->getenrollmentYear() << endl;
+			cout << left << setw(50) << "\t\tEndereço de Email: " << studentLoans[Index]->getemail() << endl;
+			cout << left << setw(50) << "\t\tNúmero de Telefone: " << studentLoans[Index]->getphone() << endl;
 		}
-
 		else
 		{
-			cout << "\t\tLoan number not found" << endl;
+			cout << "\t\tNúmero do Empréstimo não encontrado" << endl;
 		}
 	}
+
+
+	void sreachaccount()
+	{
+		int serachaccount;
+		cout << "\t\t\tDigite o Número do Empréstimo para buscar: ";
+		cin >> serachaccount;
+		bool found1 = false;
+
+		int Index = -1;
+		for (int i = 0; i < size; i++)
+		{
+			if (studentLoans[i]->getloannumber() == serachaccount)
+			{
+				if (customer[i]->login())
+				{
+					found1 = true;
+					Index = i;
+					break;
+				}
+			}
+		}
+		if (found1)
+		{
+			cout << left << setw(50) << "\t\tNome: " << studentLoans[Index]->getFirstName() << " " << studentLoans[Index]->getLastName() << endl;
+			cout << left << setw(50) << "\t\tNome de Usuário: " << customer[Index]->getname() << endl;
+			cout << left << setw(50) << "\t\tNúmero do Empréstimo: " << studentLoans[Index]->getloannumber() << endl;
+			cout << left << setw(50) << "\t\tValor do Empréstimo: R$" << studentLoans[Index]->getloanamount() << endl;
+			cout << left << setw(50) << "\t\tTaxa de Juros: " << studentLoans[Index]->getinterestrate() << "%" << endl;
+			cout << left << setw(50) << "\t\tAno de Matrícula: " << studentLoans[Index]->getenrollmentYear() << endl;
+			cout << left << setw(50) << "\t\tEndereço de Email: " << studentLoans[Index]->getemail() << endl;
+			cout << left << setw(50) << "\t\tNúmero de Telefone: " << studentLoans[Index]->getphone() << endl;
+		}
+		else
+		{
+			cout << "\t\tNúmero do Empréstimo não encontrado" << endl;
+		}
+	}
+
 	void deleteAccount(string filename, int s)
 	{
 		int deleteLoanNumber;
 		if (admin.login())
 		{
 			StudentFeeLoan::display();
-			cout << "\t\tEnter the loan number you want to delete: ";
+			cout << "\t\tDigite o número do empréstimo que deseja excluir: "; // Tradução
 			cin >> deleteLoanNumber;
 			bool found = false;
 			int deleteIndex = -1;
@@ -1699,15 +1731,15 @@ public:
 			{
 				if (studentLoans[i]->getloannumber() == deleteLoanNumber)
 				{
-					cout << setw(30) << "\t\tAccount Found" << endl;
-					cout << setw(30) << "\t\tName: " << studentLoans[i]->getFirstName() << " " << studentLoans[i]->getLastName() << endl;
-					cout << setw(30) << "\t\tUserName: " << customer[i]->getname() << endl;
-					cout << setw(30) << "\t\tLoan Number: " << studentLoans[i]->getloannumber() << endl;
-					cout << setw(30) << "\t\tLoan Amount: $" << studentLoans[i]->getloanamount() << endl;
-					cout << setw(30) << "\t\tInterest Rate: " << studentLoans[i]->getinterestrate() << "%" << endl;
-					cout << setw(30) << "\t\tEnrollment Year: " << studentLoans[i]->getenrollmentYear() << endl;
-					cout << setw(30) << "\t\tEmail Address: " << studentLoans[i]->getemail() << endl;
-					cout << setw(30) << "\t\tPhone Number: " << studentLoans[i]->getphone() << endl;
+					cout << setw(30) << "\t\tConta Encontrada" << endl; // Tradução
+					cout << setw(30) << "\t\tNome: " << studentLoans[i]->getFirstName() << " " << studentLoans[i]->getLastName() << endl; // Tradução
+					cout << setw(30) << "\t\tNome de Usuário: " << customer[i]->getname() << endl; // Tradução
+					cout << setw(30) << "\t\tNúmero do Empréstimo: " << studentLoans[i]->getloannumber() << endl; // Tradução
+					cout << setw(30) << "\t\tMontante do Empréstimo: $" << studentLoans[i]->getloanamount() << endl; // Tradução
+					cout << setw(30) << "\t\tTaxa de Juros: " << studentLoans[i]->getinterestrate() << "%" << endl; // Tradução
+					cout << setw(30) << "\t\tAno de Matrícula: " << studentLoans[i]->getenrollmentYear() << endl; // Tradução
+					cout << setw(30) << "\t\tEndereço de Email: " << studentLoans[i]->getemail() << endl; // Tradução
+					cout << setw(30) << "\t\tNúmero de Telefone: " << studentLoans[i]->getphone() << endl; // Tradução
 					found = true;
 					deleteIndex = i;
 					break;
@@ -1716,7 +1748,7 @@ public:
 			if (found)
 			{
 				char y;
-				cout << "\t\tEnter Y to delete this account " << endl;
+				cout << "\t\tDigite Y para excluir esta conta " << endl; // Tradução
 				cin >> y;
 				if (y == 'Y' || y == 'y') {
 					delete customer[deleteIndex];
@@ -1731,26 +1763,26 @@ public:
 
 					StudentFeeLoan::saveLoanData();
 
-					cout << "\t\t\tLoan deleted successfully at" << getCurrentTime() << endl;
+					cout << "\t\t\tEmpréstimo excluído com sucesso em " << getCurrentTime() << endl; // Tradução
 				}
 
 
 			}
 			else
 			{
-				cout << "\t\tLoan number not found." << endl;
+				cout << "\t\tNúmero do Empréstimo não encontrado." << endl; // Tradução
 			}
 		}
 		else
 		{
-			cout << "Invalid Password" << endl;
+			cout << "Senha Inválida" << endl; // Tradução
 		}
 	}
 
 	void calculateInterest()
 	{
 		int serach_account;
-		cout << "\t\t\tEnter the Student Loan Number to serach: ";
+		cout << "\t\t\tDigite o Número do Empréstimo Estudantil para buscar: "; // Tradução
 		cin >> serach_account;
 		bool found1 = false;
 
@@ -1772,33 +1804,33 @@ public:
 		{
 			double interest = studentLoans[Index]->getloanamount() * studentLoans[Index]->getinterestrate() / 100;
 
-			cout << "\t\t\tThe total Interest on Student loan number " << studentLoans[Index]->getloannumber() << " is $ " << interest << endl;
+			cout << "\t\t\tO total de Juros sobre o Empréstimo Estudantil número " << studentLoans[Index]->getloannumber() << " é de $ " << interest << endl; // Tradução
 
 		}
 		else
 		{
-			cout << "\t\tStudent Loan Id not Found" << endl;
+			cout << "\t\tNúmero do Empréstimo Estudantil não encontrado" << endl; // Tradução
 
 		}
 	}
 
 	void display()
 	{
-		cout << "Loan Type: Student Fee Loan" << endl;
+		cout << "Tipo de Empréstimo: Empréstimo de Taxas Estudantis" << endl; // Tradução
 		cout << left << setw(20) << "A/C"
-			<< left << setw(20) << "Name: "
+			<< left << setw(20) << "Nome: " // Tradução
 
-			<< left << setw(15) << "User Name"
-			<< left << setw(15) << "Loan NO"
-			<< left << setw(20) << "Amount"
-			<< left << setw(30) << "Email Address"
-			<< left << setw(20) << "Phone No."
-			<< left << setw(10) << "Loan Year"
+			<< left << setw(15) << "Nome de Usuário" // Tradução
+			<< left << setw(15) << "Número do Empréstimo" // Tradução
+			<< left << setw(20) << "Montante" // Tradução
+			<< left << setw(30) << "Endereço de Email" // Tradução
+			<< left << setw(20) << "Número de Telefone" // Tradução
+			<< left << setw(10) << "Ano do Empréstimo" // Tradução
 			<< endl;
 
 		for (int i = 0; i < size; i++)
 		{
-			cout << left << setw(20) << "Student Loan"
+			cout << left << setw(20) << "Empréstimo Estudantil" // Tradução
 				<< left << setw(20) << studentLoans[i]->getFirstName() + " " + studentLoans[i]->getLastName()
 				<< left << setw(15) << customer[i]->getname()
 				<< left << setw(15) << studentLoans[i]->getloannumber()
@@ -1858,7 +1890,7 @@ public:
 		Inp.open(filename);
 		if (!Inp)
 		{
-			cout << "Failed to open Personal Loan data file." << endl;
+			cout << "Falha ao abrir o arquivo de dados do Empréstimo Pessoal." << endl;
 			return;
 		}
 		int index = 0;
@@ -1905,9 +1937,8 @@ public:
 	}
 	void calculateInterest()
 	{
-
 		int serachaccount;
-		cout << "\t\tEnter the Perosnal Loan Number to serach: ";
+		cout << "\t\tDigite o número do empréstimo pessoal para pesquisar: ";
 		cin >> serachaccount;
 		bool found1 = false;
 
@@ -1928,16 +1959,17 @@ public:
 		{
 			double interest = personLoans[Index]->getloanamount() * personLoans[Index]->getinterestrate() / 100;
 
-			cout << "\t\t\tThe total Interest on Personal loan number " << personLoans[Index]->getloannumber() << " is $ " << interest << endl;
+			cout << "\t\t\tO número total de juros sobre o empréstimo pessoal " << personLoans[Index]->getloannumber() << " é R$ " << interest << endl;
 
 		}
 		else
 		{
-			cout << "Peronsal Loan Id not Found" << endl;
+			cout << "Id de empréstimo pessoal não encontrado" << endl;
 
 		}
 
 	}
+
 	int gettimeloan()
 	{
 		return loantime;
@@ -1945,53 +1977,53 @@ public:
 
 	void addloan()
 	{
-		Out.open(personLoanDataFile, ios::app); // Open the file
+		Out.open(personLoanDataFile, ios::app); // Abre o arquivo
 		if (!Out)
 		{
-			cout << "File is not open!" << endl;
+			cout << "Arquivo não está aberto!" << endl;
 			return;
 		}
 
-		cout << "\t\t\tSTUDENT LOAN ACCOUNT REGISTRATION" << endl;
+		cout << "\t\t\tREGISTRO DE CONTA DE EMPRÉSTIMO ESTUDANTIL" << endl;
 		string us, pass;
 		int time;
 		char c;
 		bool added = false;
 		do
 		{
-			cout << "\t\t\tEnter User new First name: ";
+			cout << "\t\t\tDigite o novo nome do usuário: ";
 			string fname;
 			cin >> fname;
 
-			cout << "\t\t\tEnter User new Last name: ";
+			cout << "\t\t\tDigite o novo sobrenome do usuário: ";
 			string lname;
 			cin >> lname;
 
-			cout << "\t\t\tEnter User name: ";
+			cout << "\t\t\tDigite o nome de usuário: ";
 			cin >> us;
 
-			cout << "\t\t\tEnter Password: ";
+			cout << "\t\t\tDigite a senha: ";
 			cin >> pass;
 
-			cout << "\t\t\tEnter loan time in years: ";
+			cout << "\t\t\tDigite o prazo do empréstimo em anos: ";
 			cin >> time;
 
 			int loanNo;
-			cout << "\t\t\tEnter the Loan Number: ";
+			cout << "\t\t\tDigite o número do empréstimo: ";
 			cin >> loanNo;
 
 			double amount_L;
-			cout << "\t\t\tEnter the Amount: ";
+			cout << "\t\t\tDigite o valor do empréstimo: ";
 			cin >> amount_L;
 
 			string email;
-			cout << "\t\t\tEnter the Email address: ";
+			cout << "\t\t\tDigite o endereço de email: ";
 			cin >> email;
 			double ratE;
-			cout << "\t\t\tEnter the Interest Rate: ";
+			cout << "\t\t\tDigite a taxa de juros: ";
 			cin >> ratE;
 			string phoneNumber;
-			cout << "\t\t\tEnter the Phone number: ";
+			cout << "\t\t\tDigite o número de telefone: ";
 			cin >> phoneNumber;
 			added = true;
 			if (added)
@@ -2005,17 +2037,17 @@ public:
 
 				size++;
 
-				cout << "\t\t\tThe Account Registered Successfully at " << getCurrentTime() << endl;
+				cout << "\t\t\tConta registrada com sucesso em " << getCurrentTime() << endl;
 			}
 			else
 			{
-				cout << "\t\t\tError in registerion " << endl;
+				cout << "\t\t\tErro no registro " << endl;
 			}
-			cout << "\t\t\tDo You Want To Add Another Record? (Y/N): ";
+			cout << "\t\t\tDeseja adicionar outro registro? (S/N): ";
 			cin >> c;
-		} while (c == 'Y' || c == 'y');
+		} while (c == 'S' || c == 's');
 
-		// Write the data
+		// Escreve os dados
 		for (int i = size - 1; i < size; i++)
 		{
 			Customer* cust = customer[i];
@@ -2041,7 +2073,7 @@ public:
 		bool updated = false;
 		int updateloan;
 		Personalloan::display();
-		cout << "\t\t\tEnter the loan number to update: ";
+		cout << "\t\t\tDigite o número do empréstimo a ser atualizado: ";
 		cin >> updateloan;
 		string User, PASS, mail;
 		double amount, Rate_P;
@@ -2053,14 +2085,14 @@ public:
 		{
 			if (personLoans[i]->getloannumber() == updateloan)
 			{
-				cout << left << setw(30) << "\t\tAccount Found" << endl;
-				cout << left << setw(30) << "\t\tName: " << customer[i]->getname() << endl;
-				cout << left << setw(30) << "\t\tLoan Number: " << personLoans[i]->getloannumber() << endl;
-				cout << left << setw(30) << "\t\tLoan Amount: $" << personLoans[i]->getloanamount() << endl;
-				cout << left << setw(30) << "\t\tInterest Rate: " << personLoans[i]->getinterestrate() << "%" << endl;
-				cout << left << setw(30) << "\t\tLoan Time: " << personLoans[i]->getloanyear() << " years!" << endl;
-				cout << left << setw(30) << "\t\tEmail Address: " << personLoans[i]->getemail() << endl;
-				cout << left << setw(30) << "\t\tPhone Number: " << personLoans[i]->getphone() << endl;
+				cout << left << setw(30) << "\t\tConta encontrada" << endl;
+				cout << left << setw(30) << "\t\tNome: " << customer[i]->getname() << endl;
+				cout << left << setw(30) << "\t\tNúmero do empréstimo: " << personLoans[i]->getloannumber() << endl;
+				cout << left << setw(30) << "\t\tValor do empréstimo: R$ " << personLoans[i]->getloanamount() << endl;
+				cout << left << setw(30) << "\t\tTaxa de juros: " << personLoans[i]->getinterestrate() << "%" << endl;
+				cout << left << setw(30) << "\t\tPrazo do empréstimo: " << personLoans[i]->getloanyear() << " anos!" << endl;
+				cout << left << setw(30) << "\t\tEndereço de email: " << personLoans[i]->getemail() << endl;
+				cout << left << setw(30) << "\t\tNúmero de telefone: " << personLoans[i]->getphone() << endl;
 				found = true;
 				updateIndex = i;
 				break;
@@ -2068,27 +2100,27 @@ public:
 		}
 		if (found)
 		{
-			cout << "\t\tEnter the new User name: ";
+			cout << "\t\tDigite o novo nome de usuário: ";
 			cin >> User;
 
-			cout << "\t\tEnter the new Password: ";
+			cout << "\t\tDigite a nova senha: ";
 			cin >> PASS;
 
-			cout << "\t\tEnter the new Loan Number: ";
+			cout << "\t\tDigite o novo número do empréstimo: ";
 			cin >> loan_NO;
 
-			cout << "\t\tEnter the new Loan Amount: ";
+			cout << "\t\tDigite o novo valor do empréstimo: ";
 			cin >> amount;
 
-			cout << "\t\tEnter the new Loan time: ";
+			cout << "\t\tDigite o novo prazo do empréstimo: ";
 			cin >> time;
 
-			cout << "\t\tEnter the new Email: ";
+			cout << "\t\tDigite o novo email: ";
 			cin >> mail;
 
-			cout << "\t\tEnter the new Phone number: ";
+			cout << "\t\tDigite o novo número de telefone: ";
 			cin >> phone_num;
-			cout << "\t\tEnter the Rate: ";
+			cout << "\t\tDigite a nova taxa de juros: ";
 			cin >> Rate_P;
 			updated = true;
 			if (updated)
@@ -2102,39 +2134,38 @@ public:
 				personLoans[updateIndex]->setemail(mail);
 				personLoans[updateIndex]->setphone(phone_num);
 
-				cout << "\t\tAccount Edited successfully at " << getCurrentTime() << endl;
+				cout << "\t\tConta editada com sucesso em " << getCurrentTime() << endl;
 				Personalloan::saveLoanData();
 			}
 			else
 			{
-				cout << "\t\tNot updated" << endl;
+				cout << "\t\tNão atualizado" << endl;
 			}
 		}
 		else
 		{
-			cout << "\t\tAccount Not found" << endl;
+			cout << "\t\tConta não encontrada" << endl;
 		}
 	}
 
 	void display()
 	{
-		cout << "\t\t============Loan Type: Personal Loan============" << endl;
+		cout << "\t\t============Tipo de Empréstimo: Empréstimo Pessoal============" << endl;
 
-		cout << left << setw(15) << "A/C"
-			<< left << setw(15) << "Name "
-			<< left << setw(15) << "User Name "
-			<< left << setw(15) << "Loan Number"
-			<< left << setw(15) << "Amount"
-			<< left << setw(15) << "Loan Time"
-			<< left << setw(15) << "Interest Rate"
-			<< left << setw(25) << "Email Address"
-			<< left << setw(20) << "Phone No."
-
+		cout << left << setw(15) << "Tipo"
+			<< left << setw(15) << "Nome"
+			<< left << setw(15) << "Nome de Usuário"
+			<< left << setw(15) << "Número do Empréstimo"
+			<< left << setw(15) << "Valor"
+			<< left << setw(15) << "Prazo"
+			<< left << setw(15) << "Taxa de Juros"
+			<< left << setw(25) << "Endereço de Email"
+			<< left << setw(20) << "Número de Telefone"
 			<< endl;
 
 		for (int i = 0; i < size; i++)
 		{
-			cout << left << setw(15) << "Personal Loan"
+			cout << left << setw(15) << "Empréstimo Pessoal"
 				<< left << setw(15) << personLoans[i]->getFirstName() + " " + personLoans[i]->getLastName()
 				<< left << setw(15) << customer[i]->getname()
 				<< left << setw(15) << personLoans[i]->getloannumber()
@@ -2150,7 +2181,7 @@ public:
 	void sreachaccount()
 	{
 		int serachaccount;
-		cout << "\t\t\tEnter the Loan Number to serach: ";
+		cout << "\t\t\tDigite o número do empréstimo para buscar: ";
 		cin >> serachaccount;
 		bool found1 = false;
 
@@ -2169,29 +2200,28 @@ public:
 		}
 		if (found1)
 		{
-			cout << left << setw(30) << "\t\tName: " << personLoans[Index]->getFirstName() << " " << personLoans[Index]->getLastName() << endl;
-			cout << left << setw(30) << "\t\tUsername: " << customer[Index]->getname() << endl;
-			cout << left << setw(30) << "\t\tLoan Number: " << personLoans[Index]->getloannumber() << endl;
-			cout << left << setw(30) << "\t\tLoan Amount: $" << personLoans[Index]->getloanamount() << endl;
-			cout << left << setw(30) << "\t\tInterest Rate: " << personLoans[Index]->getinterestrate() << "%" << endl;
-			cout << left << setw(30) << "\t\tLoan Time: " << personLoans[Index]->getloanyear() << endl;
-			cout << left << setw(30) << "\t\tEmail Address: " << personLoans[Index]->getemail() << endl;
-			cout << left << setw(30) << "\t\tPhone Number: " << personLoans[Index]->getphone() << endl;
+			cout << left << setw(30) << "\t\tNome: " << personLoans[Index]->getFirstName() << " " << personLoans[Index]->getLastName() << endl;
+			cout << left << setw(30) << "\t\tNome de Usuário: " << customer[Index]->getname() << endl;
+			cout << left << setw(30) << "\t\tNúmero do Empréstimo: " << personLoans[Index]->getloannumber() << endl;
+			cout << left << setw(30) << "\t\tValor do Empréstimo: R$ " << personLoans[Index]->getloanamount() << endl;
+			cout << left << setw(30) << "\t\tTaxa de Juros: " << personLoans[Index]->getinterestrate() << "%" << endl;
+			cout << left << setw(30) << "\t\tPrazo do Empréstimo: " << personLoans[Index]->getloanyear() << endl;
+			cout << left << setw(30) << "\t\tEndereço de Email: " << personLoans[Index]->getemail() << endl;
+			cout << left << setw(30) << "\t\tNúmero de Telefone: " << personLoans[Index]->getphone() << endl;
 		}
-
 		else
 		{
-			cout << "\t\tLoan number not found" << endl;
+			cout << "\t\tNúmero do empréstimo não encontrado" << endl;
 		}
 	}
+
 	void saveLoanData()
 	{
 		Out.open(personLoanDataFile);
 
-
 		if (Out.is_open())
 		{
-			// Write personal data
+			// Escreve os dados pessoais
 
 			for (int i = 0; i < size; i++)
 			{
@@ -2210,14 +2240,11 @@ public:
 					<< left << setw(30) << loan->getphone()
 					<< endl;
 			}
-
 		}
 		else
 		{
-
 			return;
 		}
-
 
 		Out.close();
 	}
@@ -2228,7 +2255,7 @@ public:
 		if (admin.login())
 		{
 			Personalloan::display();
-			cout << "\t\t\tEnter the loan number you want to delete: ";
+			cout << "\t\t\tDigite o número do empréstimo que você deseja excluir: ";
 			cin >> deleteacc;
 			bool found = false;
 			int deleteIndex = -1;
@@ -2236,14 +2263,14 @@ public:
 			{
 				if (personLoans[i]->getloannumber() == deleteacc)
 				{
-					cout << left << setw(30) << "\t\tAccount Found" << endl;
-					cout << left << setw(30) << "\t\tName: " << customer[i]->getname() << endl;
-					cout << left << setw(30) << "\t\tLoan Number: " << personLoans[i]->getloannumber() << endl;
-					cout << left << setw(30) << "\t\tLoan Amount: $" << personLoans[i]->getloanamount() << endl;
-					cout << left << setw(30) << "\t\tInterest Rate: " << personLoans[i]->getinterestrate() << "%" << endl;
-					cout << left << setw(30) << "\t\tLoan Time: " << personLoans[i]->getloanyear() << endl;
-					cout << left << setw(30) << "\t\tEmail Address: " << personLoans[i]->getemail() << endl;
-					cout << left << setw(30) << "\t\tPhone Number: " << personLoans[i]->getphone() << endl;
+					cout << left << setw(30) << "\t\tConta encontrada" << endl;
+					cout << left << setw(30) << "\t\tNome: " << customer[i]->getname() << endl;
+					cout << left << setw(30) << "\t\tNúmero do Empréstimo: " << personLoans[i]->getloannumber() << endl;
+					cout << left << setw(30) << "\t\tValor do Empréstimo: R$ " << personLoans[i]->getloanamount() << endl;
+					cout << left << setw(30) << "\t\tTaxa de Juros: " << personLoans[i]->getinterestrate() << "%" << endl;
+					cout << left << setw(30) << "\t\tPrazo do Empréstimo: " << personLoans[i]->getloanyear() << endl;
+					cout << left << setw(30) << "\t\tEndereço de Email: " << personLoans[i]->getemail() << endl;
+					cout << left << setw(30) << "\t\tNúmero de Telefone: " << personLoans[i]->getphone() << endl;
 					found = true;
 					deleteIndex = i;
 					break;
@@ -2252,10 +2279,10 @@ public:
 			if (found)
 			{
 				char y;
-				cout << "\t\tEnter Y to delete this account...! ";
+				cout << "\t\tDigite S para excluir esta conta...! ";
 				cin >> y;
-				if (y == 'Y' || y == 'y') {
-
+				if (y == 'S' || y == 's')
+				{
 					delete customer[deleteIndex];
 					delete personLoans[deleteIndex];
 					for (int i = deleteIndex; i < size - 1; i++)
@@ -2265,17 +2292,17 @@ public:
 					}
 					size--;
 					Personalloan::saveLoanData();
-					cout << "\t\tLoan account deleted successfully at" << getCurrentTime() << endl;
+					cout << "\t\tConta de empréstimo excluída com sucesso em " << getCurrentTime() << endl;
 				}
 			}
 			else
 			{
-				cout << "\t\tLoan account not found." << endl;
+				cout << "\t\tConta de empréstimo não encontrada." << endl;
 			}
 		}
 		else
 		{
-			cout << "\t\tInvalid Password" << endl;
+			cout << "\t\tSenha inválida" << endl;
 		}
 	}
 
@@ -2427,7 +2454,7 @@ public:
 		Inp.open(filename);
 		if (!Inp)
 		{
-			cout << "\t\tFailed to open Student Loan data file." << endl;
+			cout << "\t\tFalha ao abrir o arquivo de dados do Empréstimo Estudantil." << endl;
 			return;
 		}
 		int index = 0;
@@ -2477,10 +2504,11 @@ public:
 		if (admin.login())
 		{
 			RelativeInvestment::display();
-			cout << "Enter the Investment ID you want to delete: ";
+			cout << "Insira o ID do investimento que deseja excluir: ";
 			cin >> deleteacc;
 			bool found = false;
 			int deleteIndex = -1;
+			// falta traduzir abaixo adiante.../////////////////////////////////////////////////////////////////////////////////////////////////////
 			for (int i = 0; i < size; i++)
 			{
 				if (investments[i]->getinvestmentID() == deleteacc)
