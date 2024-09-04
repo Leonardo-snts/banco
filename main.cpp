@@ -1679,44 +1679,6 @@ public:
 		}
 	}
 
-
-	void sreachaccount()
-	{
-		int serachaccount;
-		cout << "\t\t\tDigite o Número do Empréstimo para buscar: ";
-		cin >> serachaccount;
-		bool found1 = false;
-
-		int Index = -1;
-		for (int i = 0; i < size; i++)
-		{
-			if (studentLoans[i]->getloannumber() == serachaccount)
-			{
-				if (customer[i]->login())
-				{
-					found1 = true;
-					Index = i;
-					break;
-				}
-			}
-		}
-		if (found1)
-		{
-			cout << left << setw(50) << "\t\tNome: " << studentLoans[Index]->getFirstName() << " " << studentLoans[Index]->getLastName() << endl;
-			cout << left << setw(50) << "\t\tNome de Usuário: " << customer[Index]->getname() << endl;
-			cout << left << setw(50) << "\t\tNúmero do Empréstimo: " << studentLoans[Index]->getloannumber() << endl;
-			cout << left << setw(50) << "\t\tValor do Empréstimo: R$" << studentLoans[Index]->getloanamount() << endl;
-			cout << left << setw(50) << "\t\tTaxa de Juros: " << studentLoans[Index]->getinterestrate() << "%" << endl;
-			cout << left << setw(50) << "\t\tAno de Matrícula: " << studentLoans[Index]->getenrollmentYear() << endl;
-			cout << left << setw(50) << "\t\tEndereço de Email: " << studentLoans[Index]->getemail() << endl;
-			cout << left << setw(50) << "\t\tNúmero de Telefone: " << studentLoans[Index]->getphone() << endl;
-		}
-		else
-		{
-			cout << "\t\tNúmero do Empréstimo não encontrado" << endl;
-		}
-	}
-
 	void deleteAccount(string filename, int s)
 	{
 		int deleteLoanNumber;
@@ -2508,20 +2470,19 @@ public:
 			cin >> deleteacc;
 			bool found = false;
 			int deleteIndex = -1;
-			// falta traduzir abaixo adiante.../////////////////////////////////////////////////////////////////////////////////////////////////////
 			for (int i = 0; i < size; i++)
 			{
 				if (investments[i]->getinvestmentID() == deleteacc)
 				{
-					cout << setw(30) << "\t\tAccount Found" << endl;
-					cout << setw(30) << "\t\tName: " << investments[i]->getFirstName() + " " + investments[i]->getLastName() << endl;
-					cout << setw(30) << "\t\tUsername: " << customer[i]->getname() << endl;
-					cout << setw(30) << "\t\tInvestment Id: " << investments[i]->getinvestmentID() << endl;
-					cout << setw(30) << "\t\tInvestment Amount: $" << investments[i]->getinvestamount() << endl;
-					cout << setw(30) << "\t\tRisk Level: " << investments[i]->getrisklevel() << endl;
-					cout << setw(30) << "\t\tRelative Name: " << investments[i]->getrelativename() << endl;
-					cout << setw(30) << "\t\tEmail Address: " << investments[i]->getemail() << endl;
-					cout << setw(30) << "\t\tPhone Number: " << investments[i]->getphone() << endl;
+					cout << setw(30) << "\t\tConta Encontrada" << endl;
+					cout << setw(30) << "\t\tNome: " << investments[i]->getFirstName() + " " + investments[i]->getLastName() << endl;
+					cout << setw(30) << "\t\tSobrenome: " << customer[i]->getname() << endl;
+					cout << setw(30) << "\t\tId de investimento: " << investments[i]->getinvestmentID() << endl;
+					cout << setw(30) << "\t\tValor de Investimento: R$" << investments[i]->getinvestamount() << endl;
+					cout << setw(30) << "\t\tNível de Risco: " << investments[i]->getrisklevel() << endl;
+					cout << setw(30) << "\t\tNome Relativo: " << investments[i]->getrelativename() << endl;
+					cout << setw(30) << "\t\tEmail: " << investments[i]->getemail() << endl;
+					cout << setw(30) << "\t\tNúmero de Celular: " << investments[i]->getphone() << endl;
 					found = true;
 					deleteIndex = i;
 					break;
@@ -2530,7 +2491,7 @@ public:
 			if (found)
 			{
 				char y;
-				cout << "\t\tEnter Y to delete this account...! ";
+				cout << "\t\tDigite Y para excluir esta conta...! ";
 				cin >> y;
 				if (y == 'Y' || y == 'y') {
 					delete customer[deleteIndex];
@@ -2542,21 +2503,21 @@ public:
 					}
 					size--;
 					RelativeInvestment::saveData();
-					cout << "\t\tInvestment account deleted successfully at " << getCurrentTime() << endl;
+					cout << "\t\tConta de investimento excluída com sucesso em " << getCurrentTime() << endl;
 				}
 				else
 				{
-					cout << "\t\tAccount is not deleted" << endl;
+					cout << "\t\tA conta não foi excluída" << endl;
 				}
 			}
 			else
 			{
-				cout << "\t\tInvestment account not found." << endl;
+				cout << "\t\tConta de investimento não encontrada." << endl;
 			}
 		}
 		else
 		{
-			cout << "\t\tInvalid Password" << endl;
+			cout << "\t\tSenha inválida" << endl;
 		}
 	}
 	void saveData()
@@ -2604,7 +2565,7 @@ public:
 	void sreachaccount()
 	{
 		int serachaccount;
-		cout << "\t\tEnter the Loan Number to serach: ";
+		cout << "\t\tDigite o Número do Investimento para pesquisar: ";
 		cin >> serachaccount;
 		bool found1 = false;
 
@@ -2622,78 +2583,76 @@ public:
 		}
 		if (found1)
 		{
-			cout <<left<< setw(20) << "\t\tName: " << investments[Index]->getFirstName() << " " << investments[Index]->getLastName() << endl;
-			cout <<left<< setw(20) << "\t\tUsername: " << customer[Index]->getname() << endl;
-			cout <<left<< setw(20) << "\t\tInvestment ID: " << investments[Index]->investmentID << endl;
-			cout <<left<< setw(20) << "\t\tInvestment Amount: $" << investments[Index]->getinvestamount() << endl;
-			cout <<left<< setw(25) << "\t\tRelative Name: " << investments[Index]->getrelativename() << endl;
-			cout <<left<< setw(30) << "\t\tEmail: " << investments[Index]->getemail() << endl;
-			cout <<left<< setw(30) << "\t\tPhone NO: " << investments[Index]->getphone() << endl;
+			cout << left << setw(20) << "\t\tNome: " << investments[Index]->getFirstName() << " " << investments[Index]->getLastName() << endl;
+			cout << left << setw(20) << "\t\tNome de usuário: " << customer[Index]->getname() << endl;
+			cout << left << setw(20) << "\t\tID do Investimento: " << investments[Index]->investmentID << endl;
+			cout << left << setw(20) << "\t\tValor do Investimento: R$ " << investments[Index]->getinvestamount() << endl;
+			cout << left << setw(25) << "\t\tNome do Parente: " << investments[Index]->getrelativename() << endl;
+			cout << left << setw(30) << "\t\tEmail: " << investments[Index]->getemail() << endl;
+			cout << left << setw(30) << "\t\tTelefone: " << investments[Index]->getphone() << endl;
 		}
 
 		else
 		{
-			cout << "\t\tInvest number not found" << endl;
+			cout << "\t\tNúmero de Investimento não encontrado" << endl;
 		}
 	}
+
 	void addinvest()
 	{
 		bool added = false;
-		Out.open(relativeinvestFile, ios::app); // Open the file
+		Out.open(relativeinvestFile, ios::app); // Abre o arquivo
 		if (!Out)
 		{
-			cout << "\t\tFile is not open!" << endl;
+			cout << "\t\tArquivo não está aberto!" << endl;
 			return;
 		}
 
-		cout << "\t\t\tInvestment ACCOUNT REGISTRATION" << endl;
+		cout << "\t\t\tREGISTRO DE CONTA DE INVESTIMENTO" << endl;
 		string us, pass;
 		string risk_level;
 		char c;
 
 		do
 		{
-			cout << "\t\t\tEnter User new First name: ";
+			cout << "\t\t\tDigite o novo Primeiro Nome do Usuário: ";
 			string fname;
 			cin >> fname;
 
-			cout << "\t\t\tEnter User new Last name: ";
+			cout << "\t\t\tDigite o novo Sobrenome do Usuário: ";
 			string lname;
 			cin >> lname;
 
-			cout << "\t\t\tEnter User name: ";
+			cout << "\t\t\tDigite o Nome de Usuário: ";
 			cin >> us;
 
-			cout << "\t\t\tEnter Password: ";
+			cout << "\t\t\tDigite a Senha: ";
 			cin >> pass;
 
-			cout << "\t\t\tEnter Risk Level : ";
+			cout << "\t\t\tDigite o Nível de Risco: ";
 			cin >> risk_level;
 
 			int investId;
-			cout << "\t\t\tEnter the Investment Number: ";
+			cout << "\t\t\tDigite o Número do Investimento: ";
 			cin >> investId;
 
 			double Amountinvest;
-			cout << "\t\t\tEnter the Investment Amount: ";
+			cout << "\t\t\tDigite o Valor do Investimento: ";
 			cin >> Amountinvest;
 
 			string email;
-			cout << "\t\t\tEnter the Email address: ";
+			cout << "\t\t\tDigite o Endereço de Email: ";
 			cin >> email;
 
-
 			string Rel_name;
-			cout << "\t\t\tEnter the Relative Name: : ";
+			cout << "\t\t\tDigite o Nome do Parente: ";
 			cin >> Rel_name;
 			string phoneNumber;
-			cout << "\t\t\tEnter the Phone number: ";
+			cout << "\t\t\tDigite o Número de Telefone: ";
 			cin >> phoneNumber;
 			added = true;
 			if (added)
 			{
-
-
 				Customer* cust = new Customer(us, pass);
 				RelativeInvestment* relinvest = new RelativeInvestment(fname, lname, investId, Amountinvest, Rel_name, risk_level, email, phoneNumber);
 
@@ -2703,12 +2662,12 @@ public:
 				size++;
 			}
 
-			cout << "\t\tThe Account Registered Successfully at " << getCurrentTime() << endl;
-			cout << "\t\tDo You Want To Add Another Record? (Y/N): ";
+			cout << "\t\tA Conta foi Registrada com Sucesso em " << getCurrentTime() << endl;
+			cout << "\t\tDeseja Adicionar Outro Registro? (S/N): ";
 			cin >> c;
-		} while (c == 'Y' || c == 'y');
+		} while (c == 'S' || c == 's');
 
-		// Write the data
+		// Escreve os dados
 		for (int i = size - 1; i < size; i++)
 		{
 			Customer* cust = customer[i];
@@ -2728,12 +2687,13 @@ public:
 
 		Out.close();
 	}
+
 	void updateaccount()
 	{
 		bool updated = false;
 		int updateinvest;
 		RelativeInvestment::display();
-		cout << "\t\t\tEnter the loan number to update: ";
+		cout << "\t\t\tDigite o número do investimento para atualizar: ";
 		cin >> updateinvest;
 		string User, PASS, relativename, levelrish, mail;
 		double amount;
@@ -2745,13 +2705,13 @@ public:
 		{
 			if (investments[i]->getinvestmentID() == updateinvest)
 			{
-				cout <<left<< setw(20) << "\t\tName: " << investments[i]->getFirstName() << " " << investments[i]->getLastName() << endl;
-				cout <<left<< setw(20) << "\t\tUsername: " << customer[i]->getname() << endl;
-				cout <<left<< setw(20) << "\t\tInvestment ID: " << investments[i]->investmentID << endl;
-				cout <<left<< setw(20) << "\t\tInvestment Amount: $" << investments[i]->investmentAmount << endl;
-				cout <<left<< setw(20) << "\t\tRelative Name: " << investments[i]->relativeName << endl;
-				cout <<left<< setw(20) << "\t\tEmail: " << investments[i]->getemail() << endl;
-				cout <<left<< setw(20) << "\t\tPhone NO: " << investments[i]->getphone() << endl;
+				cout << left << setw(20) << "\t\tNome: " << investments[i]->getFirstName() << " " << investments[i]->getLastName() << endl;
+				cout << left << setw(20) << "\t\tNome de usuário: " << customer[i]->getname() << endl;
+				cout << left << setw(20) << "\t\tID do Investimento: " << investments[i]->investmentID << endl;
+				cout << left << setw(20) << "\t\tValor do Investimento: R$ " << investments[i]->investmentAmount << endl;
+				cout << left << setw(20) << "\t\tNome do Parente: " << investments[i]->relativeName << endl;
+				cout << left << setw(20) << "\t\tEmail: " << investments[i]->getemail() << endl;
+				cout << left << setw(20) << "\t\tTelefone: " << investments[i]->getphone() << endl;
 				found = true;
 				updateIndex = i;
 				break;
@@ -2759,36 +2719,34 @@ public:
 		}
 		if (found)
 		{
-			cout << "\t\t\tEnter first name: ";
+			cout << "\t\t\tDigite o primeiro nome: ";
 			cin >> fname;
-			cout << "\t\t\tEnter last name: ";
+			cout << "\t\t\tDigite o sobrenome: ";
 			cin >> lname;
 
-			cout << "\t\t\tEnter the new User name: ";
+			cout << "\t\t\tDigite o novo Nome de Usuário: ";
 			cin >> User;
 
-			cout << "\t\t\tEnter the new Password: ";
+			cout << "\t\t\tDigite a nova Senha: ";
 			cin >> PASS;
 
-			cout << "\t\t\tEnter new Relative Name: ";
+			cout << "\t\t\tDigite o novo Nome do Parente: ";
 			cin >> relativename;
-			cout << "\t\t\tEnter the new Investment Number: ";
+			cout << "\t\t\tDigite o novo Número do Investimento: ";
 			cin >> id;
 
-			cout << "\t\t\tEnter the new Investment Amount: ";
+			cout << "\t\t\tDigite o novo Valor do Investimento: ";
 			cin >> amount;
 
-			cout << "\t\t\tEnter risk Level: ";
+			cout << "\t\t\tDigite o Nível de Risco: ";
 			cin >> levelrish;
-			cout << "\t\t\tEnter Email Address ";
+			cout << "\t\t\tDigite o Endereço de Email: ";
 			cin >> mail;
-			cout << "\t\t\tEnter Phone number ";
+			cout << "\t\t\tDigite o Número de Telefone: ";
 			cin >> phone_num;
 			updated = true;
 			if (updated)
 			{
-
-
 				investments[updateIndex]->setFirstName(fname);
 				investments[updateIndex]->setLastName(lname);
 
@@ -2801,25 +2759,24 @@ public:
 
 				investments[updateIndex]->setemail(mail);
 				investments[updateIndex]->setphone(phone_num);
-				cout << "\t\t\tAccount Edited successfully at time " << getCurrentTime() << endl;
+				cout << "\t\t\tConta Editada com Sucesso em " << getCurrentTime() << endl;
 				RelativeInvestment::saveData();
 			}
 			else
 			{
-				cout << "\t\t\tNot Updated Yet" << endl;
+				cout << "\t\t\tAinda não foi Atualizado" << endl;
 			}
 		}
 		else
 		{
-			cout << "\t\tAccount Not found" << endl;
+			cout << "\t\tConta Não Encontrada" << endl;
 		}
 	}
 
 	void calculateReturns()
-
 	{
 		int serachaccount;
-		cout << "\t\t\tEnter the Investment Number to serach: ";
+		cout << "\t\t\tDigite o Número do Investimento para pesquisar: ";
 		cin >> serachaccount;
 		bool found1 = false;
 
@@ -2839,26 +2796,25 @@ public:
 		if (found1)
 		{
 			double returns = investments[Index]->getinvestamount() * 0.05;
-			cout << "\t\t\tThe total retrun of your Investment is " << returns << endl;
-
+			cout << "\t\t\tO retorno total do seu Investimento é R$ " << returns << endl;
 		}
 		else
 		{
-			cout << "\t\tInvestment Id not Found" << endl;
-
+			cout << "\t\tID do Investimento não Encontrado" << endl;
 		}
 	}
+
 	void display()
 	{
-		cout << "\t\t\t==============Investment Type: Relative Investment=================" << endl;
+		cout << "\t\t\t==============Tipo de Investimento: Investimento Relativo=================" << endl;
 
-		cout << left << setw(15) << "Investment NO"
-			<< left << setw(18) << "Name"
-			<< left << setw(20) << "Investment Amount"
-			<< left << setw(20) << "Relative Info"
-			<< left << setw(30) << "Email Address"
-			<< left << setw(30) << "Phone No."
-			<< left << setw(20) << "Risk Time"
+		cout << left << setw(15) << "Número do Investimento"
+			<< left << setw(18) << "Nome"
+			<< left << setw(20) << "Valor do Investimento"
+			<< left << setw(20) << "Informações do Parente"
+			<< left << setw(30) << "Endereço de Email"
+			<< left << setw(30) << "Telefone"
+			<< left << setw(20) << "Nível de Risco"
 			<< endl;
 
 		for (int i = 0; i < size; i++)
@@ -2888,19 +2844,18 @@ public:
 };
 
 void aboutus()
-
 {
 	cout << setw(100) << "==================================================" << endl;
-	cout << "\t\t\t\t\t\t\tAbout US " << endl;
+	cout << "\t\t\t\t\t\t\tSobre Nós" << endl;
 	cout << setw(100) << "==================================================" << endl << endl;
-	cout << "\t\t\t\t\tIt is a Simple Bank Management System Project for our ";
-	cout << " 2nd Semester based on OOP C++ programming language.";
+	cout << "\t\t\t\t\tEste é um Projeto Simples de Sistema de Gerenciamento Bancário para o ";
+	cout << "2º Semestre baseado na linguagem de programação C++ orientada a objetos.";
 
-	cout << "\n\n\t\t\t\t\t\t\tMembers of Team Warriors: \n\n" << endl;
+	cout << "\n\n\t\t\t\t\t\t\tMembros da Equipe Guerreiros: \n\n" << endl;
 
 	cout << "\t\t\t\t\t\t\t[1] .Umair Inayat\n" << endl;
-
 }
+
 int CountLinesInFile(const string& filename)
 {
 	ifstream file(filename);
@@ -2916,15 +2871,16 @@ int CountLinesInFile(const string& filename)
 	file.close();
 	return count;
 }
+
 int main()
 {
-
 	system("cls");
 	system("color f3");
 
 	cout << setw(100) << "==================================================" << endl;
-	cout << setw(100) << "            Welcome to the Bank Managament System!         " << endl;
+	cout << setw(100) << "            Bem-vindo ao Sistema de Gestão Bancária!         " << endl;
 	cout << setw(100) << "==================================================" << endl;
+
 	int S_Size = 0, C_Size = 0, St_Size = 0, P_Size = 0, R_Size = 0;
 	S_Size = CountLinesInFile("save.txt");
 	C_Size = CountLinesInFile("check.txt");
@@ -2941,37 +2897,35 @@ int main()
 	bool UloggedIn = false;
 
 	int choice;
-	cout << "\t\t\t\t\t\t\t\tAccount Type \n";
+	cout << "\t\t\t\t\t\t\t\tTipo de Conta \n";
 	cout << endl;
-	cout << setw(60) << " \t\t                  [1] . Administrator\n";
-	cout << setw(50) << "\t\t  [2] . User" << endl;
+	cout << setw(60) << " \t\t                  [1] . Administrador\n";
+	cout << setw(50) << "\t\t  [2] . Usuário" << endl;
 	cout << endl;
-	cout << "\t\t\t\t\t\t\t\tEnter your Choice...!";
+	cout << "\t\t\t\t\t\t\t\tDigite sua escolha...!";
 	cin >> choice;
 	char x;
 	switch (choice)
 	{
 	case 1:
-
 		system("cls");
 		AloggedIn = true;
 		while (AloggedIn)
 		{
-
 			system("cls");
 			cout << "\n\n";
 			cout << "\t\t\t\t\t\t==================================================" << endl;
-			cout << "\t\t\t\t\t\t\t\tWelcome to Admin Portal" << endl;
+			cout << "\t\t\t\t\t\t\t\tBem-vindo ao Portal do Administrador" << endl;
 			cout << "\t\t\t\t\t\t==================================================" << endl;
 
-			cout << "\n\t\t\t\t\t\t[1] . Saving account: \n";
-			cout << "\t\t\t\t\t\t[2] . Checking account: \n";
-			cout << "\t\t\t\t\t\t[3] . Student Loan: \n";
-			cout << "\t\t\t\t\t\t[4] . Personal Loan: \n";
-			cout << "\t\t\t\t\t\t[5] . Relative Investment: \n";
-			cout << "\t\t\t\t\t\t[6] . About US \n";
-			cout << "\t\t\t\t\t\t[7] . Log Out !!! \n";
-			cout << "\n\t\t\t\t\t\tSelect one option...!";
+			cout << "\n\t\t\t\t\t\t[1] . Conta Poupança: \n";
+			cout << "\t\t\t\t\t\t[2] . Conta Corrente: \n";
+			cout << "\t\t\t\t\t\t[3] . Empréstimo Estudantil: \n";
+			cout << "\t\t\t\t\t\t[4] . Empréstimo Pessoal: \n";
+			cout << "\t\t\t\t\t\t[5] . Investimento Relativo: \n";
+			cout << "\t\t\t\t\t\t[6] . Sobre Nós \n";
+			cout << "\t\t\t\t\t\t[7] . Sair \n";
+			cout << "\n\t\t\t\t\t\tSelecione uma opção...!";
 			int adchoice;
 			cin >> adchoice;
 			switch (adchoice)
@@ -2980,15 +2934,15 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tSaving Account Admin Potral\n";
+				cout << "\t\t\t\t\t\t\t\tPortal de Administração da Conta Poupança\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\n\t\t\t\t\t\tSelect one Option\n";
-				cout << "\n\t\t\t\t\t\t[1] . View Customer Accounts\n";
-				cout << "\t\t\t\t\t\t[2] . Customer Account Registration\n";
-				cout << "\t\t\t\t\t\t[3] . Edit Customer Account\n";
-				cout << "\t\t\t\t\t\t[4] . Delete Customer Account\n";
-				cout << "\t\t\t\t\t\t[5] . Search Customer Account\n";
-				cout << "\n\t\t\t\t\t\tSelect one Option...!";
+				cout << "\n\t\t\t\t\t\tSelecione uma Opção\n";
+				cout << "\n\t\t\t\t\t\t[1] . Visualizar Contas de Clientes\n";
+				cout << "\t\t\t\t\t\t[2] . Registro de Conta de Cliente\n";
+				cout << "\t\t\t\t\t\t[3] . Editar Conta de Cliente\n";
+				cout << "\t\t\t\t\t\t[4] . Excluir Conta de Cliente\n";
+				cout << "\t\t\t\t\t\t[5] . Buscar Conta de Cliente\n";
+				cout << "\n\t\t\t\t\t\tSelecione uma Opção...!";
 				int svechoice;
 				cin >> svechoice;
 				switch (svechoice)
@@ -2996,37 +2950,37 @@ int main()
 				case 1:
 					system("cls");
 					SA->display();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu..... ";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					SA->Addaccount(S_Size);
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				case 3:
 					system("cls");
 					SA->updateaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				case 4:
 					system("cls");
 					SA->deleteaccount("save.txt", S_Size);
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				case 5:
 					system("cls");
 					SA->serachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				}
@@ -3035,15 +2989,15 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\tChecking Account Admin Potral" << endl;
+				cout << "\t\t\t\t\t\t\tPortal de Administração da Conta Corrente" << endl;
 				cout << "\t\t\t\t\t\t==================================================" << endl;
 
-				cout << "\n\n\t\t\t\t\t\t[1] . View Customer Accounts\n";
-				cout << "\t\t\t\t\t\t[2] . Customer Account Registration\n";
-				cout << "\t\t\t\t\t\t[3] . Edit Customer Account\n";
-				cout << "\t\t\t\t\t\t[4] . Delete Customer Account\n";
-				cout << "\t\t\t\t\t\t[5] . Search Customer Account\n";
-				cout << "\n\t\t\t\t\t\t\tSelect one Option...!";
+				cout << "\n\n\t\t\t\t\t\t[1] . Visualizar Contas de Clientes\n";
+				cout << "\t\t\t\t\t\t[2] . Registro de Conta de Cliente\n";
+				cout << "\t\t\t\t\t\t[3] . Editar Conta de Cliente\n";
+				cout << "\t\t\t\t\t\t[4] . Excluir Conta de Cliente\n";
+				cout << "\t\t\t\t\t\t[5] . Buscar Conta de Cliente\n";
+				cout << "\n\t\t\t\t\t\t\tSelecione uma Opção...!";
 				int checkchoice;
 				cin >> checkchoice;
 				switch (checkchoice)
@@ -3051,37 +3005,37 @@ int main()
 				case 1:
 					system("cls");
 					CA->display();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					CA->Addaccount(C_Size);
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				case 3:
 					system("cls");
 					CA->updateaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				case 4:
 					system("cls");
 					CA->deleteaccount("check.txt", C_Size);
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				case 5:
 					system("cls");
 					CA->serachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 					cin >> x;
 					break;
 				}
@@ -3090,15 +3044,15 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tStudent Loan Admin Potral" << endl;
+				cout << "\t\t\t\t\t\t\t\tPortal de Administração do Empréstimo Estudantil" << endl;
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\n\t\t\t\t\t\tSelect one Option\n\n";
-				cout << "\t\t\t\t\t\t[1] . View Student Accounts\n";
-				cout << "\t\t\t\t\t\t[2] . Student Account Registration\n";
-				cout << "\t\t\t\t\t\t[3] . Edit Student Account\n";
-				cout << "\t\t\t\t\t\t[4] . Delete Student Account\n";
-				cout << "\t\t\t\t\t\t[5] . Search Student Account\n";
-				cout << "\n\t\t\t\t\t\tSelect one Option...!";
+				cout << "\n\t\t\t\t\t\tSelecione uma Opção\n\n";
+				cout << "\t\t\t\t\t\t[1] . Visualizar Contas de Estudantes\n";
+				cout << "\t\t\t\t\t\t[2] . Registro de Conta de Estudante\n";
+				cout << "\t\t\t\t\t\t[3] . Editar Conta de Estudante\n";
+				cout << "\t\t\t\t\t\t[4] . Excluir Conta de Estudante\n";
+				cout << "\t\t\t\t\t\t[5] . Buscar Conta de Estudante\n";
+				cout << "\n\t\t\t\t\t\tSelecione uma Opção...!";
 				int studchoice;
 				cin >> studchoice;
 				switch (studchoice)
@@ -3107,41 +3061,41 @@ int main()
 					system("cls");
 					S_L->display();
 					cout << "\n\n";
-					cout << "\t\t\t\t\tEnter any Character to goto  Main menu... ";
+					cout << "\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					S_L->addloan();
 					cout << "\n\n";
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu... ";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 3:
 					S_L->updateaccount();
 					cout << "\n\n";
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu... ";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 4:
 					system("cls");
-
 					S_L->deleteAccount("student.txt", St_Size);
 					cout << "\n\n";
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 5:
 					system("cls");
-
 					S_L->sreachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\n\n";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\n\n";
+					cout << "\t\t\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				}
@@ -3150,55 +3104,54 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tPersonal Loan Admin Potral" << endl;
-				cout << "\t\t\t\t\t\t==================================================\n" << endl;
+				cout << "\t\t\t\t\t\t\t\tPortal de Administração do Empréstimo Pessoal" << endl;
+				cout << "\t\t\t\t\t\t==================================================" << endl;
 
-				cout << "\t\t\t\t\t\t[1] . View Personal Accounts\n";
-				cout << "\t\t\t\t\t\t[2] . Personal Account Registration\n";
-				cout << "\t\t\t\t\t\t[3] . Edit Personal Account\n";
-				cout << "\t\t\t\t\t\t[4] . Delete Personal Account\n";
-				cout << "\t\t\t\t\t\t[5] . Search Personal Account\n";
-				cout << "\n\t\t\t\t\t\t\tSelect one Option...!";
-
-				int per_choice;
-				cin >> per_choice;
-				switch (per_choice)
+				cout << "\n\n\t\t\t\t\t\tSelecione uma Opção \n\n";
+				cout << "\t\t\t\t\t\t[1] . Visualizar Contas de Empréstimos Pessoais\n";
+				cout << "\t\t\t\t\t\t[2] . Registro de Conta de Empréstimo Pessoal\n";
+				cout << "\t\t\t\t\t\t[3] . Editar Conta de Empréstimo Pessoal\n";
+				cout << "\t\t\t\t\t\t[4] . Excluir Conta de Empréstimo Pessoal\n";
+				cout << "\t\t\t\t\t\t[5] . Buscar Conta de Empréstimo Pessoal\n";
+				cout << "\n\t\t\t\t\t\tSelecione uma Opção...!";
+				int Pchoice;
+				cin >> Pchoice;
+				switch (Pchoice)
 				{
 				case 1:
-
 					system("cls");
 					PL->display();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					PL->addloan();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 3:
 					system("cls");
 					PL->updateaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 4:
 					system("cls");
 					PL->deleteAccount("personal.txt", P_Size);
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 5:
 					system("cls");
 					PL->sreachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				}
@@ -3207,56 +3160,54 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\tRelative Investment Admin Potral" << endl;
-				cout << "\t\t\t\t\t\t==================================================\n" << endl;
+				cout << "\t\t\t\t\t\t\t\tPortal de Administração de Investimentos Relativos" << endl;
+				cout << "\t\t\t\t\t\t==================================================" << endl;
 
-				cout << "\t\t\t\t\t\t[1] . View Relative Investment Accounts\n";
-				cout << "\t\t\t\t\t\t[2] . Relative Investment Account Registration\n";
-				cout << "\t\t\t\t\t\t[3] . Edit Relative Investment Account\n";
-				cout << "\t\t\t\t\t\t[4] . Delete Relative Investment Account\n";
-				cout << "\t\t\t\t\t\t[5] . Search Relative Investment Account\n\n";
-				cout << "\n\t\t\t\t\t\t\tSelect one Option...!";
-				int invest_choice;
-
-				cin >> invest_choice;
-				switch (invest_choice)
+				cout << "\n\n\t\t\t\t\t\tSelecione uma Opção \n\n";
+				cout << "\t\t\t\t\t\t[1] . Visualizar Contas de Investimentos Relativos\n";
+				cout << "\t\t\t\t\t\t[2] . Registro de Conta de Investimento Relativo\n";
+				cout << "\t\t\t\t\t\t[3] . Editar Conta de Investimento Relativo\n";
+				cout << "\t\t\t\t\t\t[4] . Excluir Conta de Investimento Relativo\n";
+				cout << "\t\t\t\t\t\t[5] . Buscar Conta de Investimento Relativo\n";
+				cout << "\n\t\t\t\t\t\tSelecione uma Opção...!";
+				int Rchoice;
+				cin >> Rchoice;
+				switch (Rchoice)
 				{
-
 				case 1:
 					system("cls");
 					RI->display();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					RI->addinvest();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 3:
 					system("cls");
 					RI->updateaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				case 4:
 					system("cls");
 					RI->deleteAccount("invest.txt", R_Size);
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
-
 				case 5:
 					system("cls");
 					RI->sreachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal... ";
 					cin >> x;
 					break;
 				}
@@ -3264,24 +3215,24 @@ int main()
 			case 6:
 				system("cls");
 				aboutus();
-				cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+				cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 				cin >> x;
 				break;
 			case 7:
 				system("cls");
 				AloggedIn = false;
-				cout << "\n\n\t\t\t\t\t\t Logging Out\n\n";
-				cout << "\t\t\t\t\t\tAdmin Logout at " << getCurrentTime() << endl;
+				cout << "\n\n\t\t\t\t\t\tSaindo\n\n";
+				cout << "\t\t\t\t\t\tSair do administrador em " << getCurrentTime() << endl;
 				break;
 			default:
-				cout << "\t\t\t\t\tInvalid input" << endl;
-				cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+				cout << "\t\t\t\t\tEntrada inválida" << endl;
+				cout << "\t\t\t\t\t\tDigite qualquer caractere para ir ao menu principal...";
 				cin >> x;
 				break;
 			}
 		}
 		break;
-	case 2:
+		case 2:
 		system("cls");
 		UloggedIn = true;
 		while (UloggedIn)
@@ -3290,18 +3241,18 @@ int main()
 			system("cls");
 			cout << "\n\n";
 			cout << "\t\t\t\t\t\t==================================================" << endl;
-			cout << "\t\t\t\t\t\t\t\tUser Potral" << endl;
+			cout << "\t\t\t\t\t\t\t\tPortal do Usuário" << endl;
 			cout << "\t\t\t\t\t\t==================================================" << endl;
 
-			cout << "\t\t\t\t\t\t[1] . Saving account: \n";
-			cout << "\t\t\t\t\t\t[2] . Checking account: \n";
-			cout << "\t\t\t\t\t\t[3] . Student Loan: \n";
-			cout << "\t\t\t\t\t\t[4] . Personal Loan: \n";
-			cout << "\t\t\t\t\t\t[5] . Relative Investment: \n";
-			cout << "\t\t\t\t\t\t[6] . About US \n";
-			cout << "\t\t\t\t\t\t[7] . Log Out !!! \n";
+			cout << "\t\t\t\t\t\t[1] . Conta Poupança: \n";
+			cout << "\t\t\t\t\t\t[2] . Conta Corrente: \n";
+			cout << "\t\t\t\t\t\t[3] . Empréstimo Estudantil: \n";
+			cout << "\t\t\t\t\t\t[4] . Empréstimo Pessoal: \n";
+			cout << "\t\t\t\t\t\t[5] . Investimento Relativo: \n";
+			cout << "\t\t\t\t\t\t[6] . Sobre Nós \n";
+			cout << "\t\t\t\t\t\t[7] . Sair!!! \n";
 
-			cout << "\n\t\t\t\t\t\t\tSelect one option...!";
+			cout << "\n\t\t\t\t\t\t\tSelecione uma opção...!";
 			int userchoice;
 			cin >> userchoice;
 			switch (userchoice)
@@ -3310,13 +3261,13 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tSaving Account Potral\n";
+				cout << "\t\t\t\t\t\t\t\tPortal da Conta Poupança\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
 
-				cout << "\t\t\t\t\t\t[1] . Balance Inquiry\n";
-				cout << "\t\t\t\t\t\t[2] . Cash Withdraw:\n";
-				cout << "\t\t\t\t\t\t[3] . Cash Deposit:\n";
-				cout << "\t\t\t\t\t\t\tSelect one Option...!";
+				cout << "\t\t\t\t\t\t[1] . Consulta de Saldo\n";
+				cout << "\t\t\t\t\t\t[2] . Saque:\n";
+				cout << "\t\t\t\t\t\t[3] . Depósito:\n";
+				cout << "\t\t\t\t\t\t\tSelecione uma opção...!";
 				int sachoice;
 
 				cin >> sachoice;
@@ -3325,32 +3276,32 @@ int main()
 				case 1:
 					system("cls");
 					SA->serachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
-					cout << "\t\t\t\t\t\tEnter the Ammount you want to withdraw";
+					cout << "\t\t\t\t\t\tDigite o valor que deseja sacar";
 					double amount;
 					cin >> amount;
 					SA->withdraw(amount);
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				case 3:
 					system("cls");
-					cout << "\t\t\t\t\t\tEnter the Ammount you want to Deposit";
+					cout << "\t\t\t\t\t\tDigite o valor que deseja depositar";
 					double de_amount;
 					cin >> de_amount;
 
 					SA->deposit(de_amount);
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				}
@@ -3360,13 +3311,13 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tChecking Account Potral\n";
+				cout << "\t\t\t\t\t\t\t\tPortal da Conta Corrente\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\n\t\t\t\t\t\t[1] . Balance Inquiry\n";
-				cout << "\t\t\t\t\t\t[2] . Cash Withdraw:\n";
-				cout << "\t\t\t\t\t\t[3] . Cash Deposit:\n";
+				cout << "\n\t\t\t\t\t\t[1] . Consulta de Saldo\n";
+				cout << "\t\t\t\t\t\t[2] . Saque:\n";
+				cout << "\t\t\t\t\t\t[3] . Depósito:\n";
 				int ckchoice;
-				cout << "\n\t\t\t\t\t\t\tEnter your Choice...";
+				cout << "\n\t\t\t\t\t\t\tDigite sua opção...";
 				cin >> ckchoice;
 				switch (ckchoice)
 				{
@@ -3374,35 +3325,35 @@ int main()
 					system("cls");
 					cout << "\n\t\t\t\t======================================================================================\n";
 					CA->serachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu... ";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal... ";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					cout << "\n\t\t\t\t======================================================================================\n";
-					cout << "\t\t\t\t\t\tEnter the Ammount you want to withdraw... ";
+					cout << "\t\t\t\t\t\tDigite o valor que deseja sacar... ";
 					double amount;
 					cin >> amount;
 					CA->withdraw(amount);
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu... ";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal... ";
 					cin >> x;
 					break;
 				case 3:
 					system("cls");
 					cout << "\n\t\t\t\t======================================================================================\n";
-					cout << "\t\t\t\t\t\tEnter the Ammount you want to Deposit.. ";
+					cout << "\t\t\t\t\t\tDigite o valor que deseja depositar.. ";
 					double de_amount;
 					cin >> de_amount;
 
 					CA->deposit(de_amount);
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				default:
 					system("cls");
 					cout << "\n======================================================================================\n";
-					cout << "\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				}
@@ -3411,32 +3362,32 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tStudent Loan Potral\n";
+				cout << "\t\t\t\t\t\t\t\tPortal de Empréstimo Estudantil\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\n\t\t\t\t\t\t[1] . Loan Inquiry\n";
-				cout << "\t\t\t\t\t\t[2] . Calculate Intrest:\n";
+				cout << "\n\t\t\t\t\t\t[1] . Consulta de Empréstimo\n";
+				cout << "\t\t\t\t\t\t[2] . Calcular Juros:\n";
 
 				int loanchoice;
-				cout << "\n\t\t\t\t\t\t\tEnter your choice...";
+				cout << "\n\t\t\t\t\t\t\tDigite sua opção...";
 				cin >> loanchoice;
 				switch (loanchoice)
 				{
 				case 1:
 					system("cls");
 					S_L->sreachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto  Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					S_L->calculateInterest();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				}
@@ -3445,32 +3396,32 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tPersonal Loan Potral\n";
+				cout << "\t\t\t\t\t\t\t\tPortal de Empréstimo Pessoal\n";
 				cout << "\t\t\t\t\t\t================================================\n" << endl;
-				cout << "\t\t\t\t\t\t[1] . Loan Inquiry\n";
-				cout << "\t\t\t\t\t\t[2] . Calculate Intrest:\n";
+				cout << "\t\t\t\t\t\t[1] . Consulta de Empréstimo\n";
+				cout << "\t\t\t\t\t\t[2] . Calcular Juros:\n";
 
 				int ploanchoice;
-				cout << "\n\t\t\t\t\t\t\tEnter your choice...";
+				cout << "\n\t\t\t\t\t\t\tDigite sua opção...";
 				cin >> ploanchoice;
 				switch (ploanchoice)
 				{
 				case 1:
 					system("cls");
 					PL->sreachaccount();
-					cout << "\t\t\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					PL->calculateInterest();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				}
@@ -3479,31 +3430,31 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\t\t\t\tRelative Investment Potral" << endl;
+				cout << "\t\t\t\t\t\t\t\tPortal de Investimento Relativo" << endl;
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\n\t\t\t\t\t\t[1] . Investment Inquiry\n";
-				cout << "\t\t\t\t\t\t[2] . Calculate Intrest:\n";
+				cout << "\n\t\t\t\t\t\t[1] . Consulta de Investimento\n";
+				cout << "\t\t\t\t\t\t[2] . Calcular Juros:\n";
 				int invectchoice;
-				cout << "\n\t\t\t\t\t\t\tEnter your Choice..." << endl;
+				cout << "\n\t\t\t\t\t\t\tDigite sua opção..." << endl;
 				cin >> invectchoice;
 				switch (invectchoice)
 				{
 				case 1:
 					system("cls");
 					RI->sreachaccount();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				case 2:
 					system("cls");
 					RI->calculateReturns();
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				default:
 					system("cls");
-					cout << "\t\t\tInvalid Input" << endl;
-					cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+					cout << "\t\t\tEntrada Inválida" << endl;
+					cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 					cin >> x;
 					break;
 				}
@@ -3512,25 +3463,25 @@ int main()
 				system("cls");
 				cout << "\n\n";
 				cout << "\t\t\t\t\t\t==================================================" << endl;
-				cout << "\t\t\t\t\tAbout US " << endl;
+				cout << "\t\t\t\t\tSobre Nós " << endl;
 				cout << "\t\t\t\t\t\t==================================================" << endl << endl;
 				aboutus();
-				cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+				cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 				cin >> x;
 				break;
 			case 7:
 				system("cls");
 				cout << "\n\n\n";
-				cout << "\t\t\t\t\t\tThanks for using our servies" << endl;
-				cout << "\t\t\t\t\t\tUser Logout at " << getCurrentTime() << endl;
+				cout << "\t\t\t\t\t\tObrigado por usar nossos serviços" << endl;
+				cout << "\t\t\t\t\t\tUsuário desconectado em " << getCurrentTime() << endl;
 				UloggedIn = false;
 
 				break;
 
 			default:
 				system("cls");
-				cout << "\t\t\t\t\tInvalid Input" << endl;
-				cout << "\t\t\t\t\t\tEnter any Character to goto Main menu...";
+				cout << "\t\t\t\t\tEntrada Inválida" << endl;
+				cout << "\t\t\t\t\t\tDigite qualquer caractere para voltar ao menu principal...";
 				cin >> x;
 				break;
 			}
@@ -3538,7 +3489,7 @@ int main()
 		break;
 	default:
 		system("cls");
-		cout << "\t\t\t\t\t\tInvalid Input" << endl;
+		cout << "\t\t\t\t\t\tEntrada Inválida" << endl;
 		break;
 	}
 	return 0;
